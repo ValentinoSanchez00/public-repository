@@ -1,0 +1,39 @@
+name: deploy
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+
+jobs:
+  deploy_job:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}   
+    
+    steps:
+      - name: Recoger input
+        run: |
+          echo "Entorno seleccionado: ${{ inputs.environment }}"
+
+      - name: Deploy Development
+        if: ${{ inputs.environment == 'development' }}  
+        run: |
+          echo "Cargando variables de Development"
+          echo "API_URL is ${{ vars.API_URL }}"  
+          echo "LOG_LEVEL is ${{ vars.LOG_LEVEL }}"
+
+      - name: Deploy Staging
+        if: ${{ inputs.environment == 'staging' }} 
+        run: |
+          echo "Cargando variables de Staging"
+          echo "API_URL is ${{ vars.API_URL }}"
+          echo "LOG_LEVEL is ${{ vars.LOG_LEVEL }}"
+
+      - name: Deploy Production
+        if: ${{ inputs.environment == 'production' }}  
+        run: |
+          echo "Cargando variables de Production"
+          echo "API_URL is ${{ vars.API_URL }}"
+          echo "LOG_LEVEL is ${{ vars.LOG_LEVEL }}"
