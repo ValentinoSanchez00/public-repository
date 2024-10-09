@@ -1,17 +1,11 @@
 name: deploy
 
 on:
-  workflow_dispatch:
+ workflow_call:
     inputs:
       environment:
-         description: 'Selecciona el ambiente'
-         required: true
-         default: 'development'
-         type: choice
-         options:
-          - development
-          - staging
-          - production
+        required: true
+        type: string
  
 
 jobs:
