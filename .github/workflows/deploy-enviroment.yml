@@ -23,8 +23,4 @@ jobs:
           echo "${{ vars.API_URL }}" 
           echo "${{ vars.LOG_LEVEL }}" 
 
-      - name: Verificar variables cargadas
-        run: |
-          echo "Cargando variables..."
-          echo "API_URL is $API_URL"
-          echo "LOG_LEVEL is $LOG_LEVEL"
+ 
