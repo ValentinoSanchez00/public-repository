@@ -10,7 +10,7 @@ on:
 jobs:
   deploy_job:
     runs-on: ubuntu-latest
-    environment: ${{ inputs.environment }}   
+    environment: ${{ inputs.environment }}
     
     steps:
       - name: Recoger input
@@ -19,6 +19,6 @@ jobs:
 
       - name: Deploy Development
         run: |
-          echo "Cargando variables "
+          echo "Cargando variables"
           echo "API_URL is ${{ vars.API_URL }}"  
           echo "LOG_LEVEL is ${{ vars.LOG_LEVEL }}"
