@@ -1,11 +1,17 @@
-name: Export Variables
+name: Export Variables from Specific Environment
 
 on:
   workflow_dispatch:
+    inputs:
+      environment:
+        description: 'The environment to use'
+        required: true
+        default: 'development'
 
 jobs:
   export-env-vars:
     runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.environment }}  
     outputs:
       api_url: ${{ steps.get-vars.outputs.api_url }}
       log_level: ${{ steps.get-vars.outputs.log_level }}
