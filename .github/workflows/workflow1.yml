@@ -1,0 +1,17 @@
+name: Export Environment Variables
+
+on:
+  workflow_dispatch:
+
+jobs:
+  export-env-vars:
+    runs-on: ubuntu-latest
+    outputs:
+      var1: ${{ steps.export.outputs.var1 }}
+      var2: ${{ steps.export.outputs.var2 }}
+    steps:
+      - name: Export environment variables
+        id: export
+        run: |
+          echo "::set-output name=var1::${{ secrets.ENV_VAR1 }}"
+          echo "::set-output name=var2::${{ secrets.ENV_VAR2 }}"
