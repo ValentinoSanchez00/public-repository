@@ -1,11 +1,18 @@
 name: deploy
 
 on:
-  workflow_call:
+  workflow_dispatch:
     inputs:
       environment:
-        required: true
-        type: string
+         description: 'Selecciona el ambiente'
+         required: true
+         default: 'development'
+         type: choice
+         options:
+          - development
+          - staging
+          - production
+ 
 
 jobs:
   deploy_job:
@@ -19,8 +26,8 @@ jobs:
 
       - name: Cargar variables de entorno manualmente
         run: |
-          echo "API_URL=${{ vars.API_URL }}" >> $GITHUB_ENV
-          echo "LOG_LEVEL=${{ vars.LOG_LEVEL }}" >> $GITHUB_ENV
+          echo "${{ vars.API_URL }}" 
+          echo "${{ vars.LOG_LEVEL }}" 
 
       - name: Verificar variables cargadas
         run: |
