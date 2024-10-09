@@ -11,14 +11,19 @@ jobs:
   deploy_job:
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
-    
+
     steps:
       - name: Recoger input
         run: |
           echo "Entorno seleccionado: ${{ inputs.environment }}"
 
-      - name: Deploy Development
+      - name: Cargar variables de entorno manualmente
         run: |
-          echo "Cargando variables"
-          echo "API_URL is ${{ env.API_URL }}"  
-          echo "LOG_LEVEL is ${{ env.LOG_LEVEL }}"
+          echo "API_URL=${{ vars.API_URL }}" >> $GITHUB_ENV
+          echo "LOG_LEVEL=${{ vars.LOG_LEVEL }}" >> $GITHUB_ENV
+
+      - name: Verificar variables cargadas
+        run: |
+          echo "Cargando variables..."
+          echo "API_URL is $API_URL"
+          echo "LOG_LEVEL is $LOG_LEVEL"
